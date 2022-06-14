@@ -1,0 +1,108 @@
+.bt-0{
+	background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 30px 0;
+    box-shadow: 0 0 7px #b1a8a8;
+}
+/*p.steps-heading:before {
+    position: absolute;
+    left: 102px;
+    bottom: 0px;
+    top: 80px;
+    height: 2px;
+    width: 64px;
+    margin-left: -36px;
+    background: #26a69a;
+    content: "";
+}*/
+
+/*input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea{
+	background-color: #ecececbf;
+    border: none;
+    border-bottom: 2px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 13px;
+    margin: 0 0 20px 0;
+    padding: 0 9px;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+}*/
+/*input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
+	border-bottom: 2px solid #26a69a;
+    box-shadow: 0 1px 0 0 #26a69a;
+}*/
+.form-control.bt-controll {
+    background-color: #ecececbf;
+    border: none;
+    border-bottom: 2px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 98%;
+    font-size: 13px;
+    margin: 0 0 20px 0;
+    padding: 0 9px;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+    color: #938d8d;
+}
+
+textarea.form-control.bt-controll {
+    height: 60px;
+}
+input.form-control.bt-controll:focus {
+    border-bottom: 2px solid #26a69a;
+    box-shadow: 0 1px 0 0 #26a69a;
+}
+select.form-control.bt-controll:focus {
+    border-bottom: 2px solid #26a69a;
+    box-shadow: 0 1px 0 0 #26a69a;
+}
+label.bt-lable {
+    font-size: 13px;
+    font-weight: normal;
+}
+p.rd-0.steps-heading {
+    margin-bottom: 20px;
+}
+.stp-0{
+	color: #26a69a;
+	margin-top: 8px;
+    margin-bottom: -15px;
+}
+.stp-1{
+	color: #26a69a;
+	margin-top: -7px;
+    margin-bottom: -15px;
+}
+[type="radio"]:not(:checked), [type="radio"]:checked {
+    left: 20px;
+    opacity: 1;
+}
+ul.all-details li {
+    background-color: #f1f1f1;
+    padding: 4px 16px;
+    margin-bottom: 10px;
+    color: #696464;
+    font-size: 13px;
+    box-shadow: -1px 2px 0px #d4cdcd;
+    border-radius: 0px;
+    font-weight: 600;
+}
+span.tdp-01 {
+    font-size: 15px;
+    color: #9e9e9e;
+}
+ul.all-details {
+    color: #9e9e9e;
+}
+@media (min-width: 1200px)
+.container {
+    width: 1324px !important;
+}

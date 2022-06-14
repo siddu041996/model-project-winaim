@@ -1,0 +1,503 @@
+﻿/*
+    Added By : Devaraj S,
+    Added on : 12-04-2017_1556.
+    Description : DcPage View Engine Framework.
+*/
+
+var DcFormViewDiaplayMetaDataConfig = null;
+
+function UpdatePageCriteria() {
+    if (DCPageCriteria != null && DCPageCriteria != '') {
+        try {
+            DCPageCriteria = JSON.parse(DCPageCriteria);
+        }
+        catch (ex) {
+            DCPageCriteria = null;
+        }
+        if (DCPageCriteria != null) {
+            DcTemplateId = DCPageCriteria["TemplateId"];
+            DcTemplateName = DCPageCriteria["TemplateName"];
+            DcPlaceId = DCPageCriteria["DcPlaceId"];
+            DcPlaceName = DCPageCriteria["DcPlaceName"];
+            DcPlaceType = DCPageCriteria["DcPlaceType"];
+            DcProfileId = DCPageCriteria["DcProfileId"];
+            DcViewContext = DCPageCriteria["DcViewContext"];
+            DcId = DCPageCriteria["DcId"];
+        }
+    }
+}
+
+function LoadNewDCBar() {
+    var oDcPageFormEngine = new DcPageFormEngine();
+    oDcPageFormEngine.UrlToGetDcFormViewDiaplayMetaDataConfig = GetRelativeUrl("/DataCapture/DcFormViewDiaplayMetaData");
+    DcFormViewDiaplayMetaDataConfig = oDcPageFormEngine.GetDcFormViewDiaplayMetaDataConfig();
+    oDcPageFormEngine.DcFormViewDiaplayMetaDataConfig = DcFormViewDiaplayMetaDataConfig;
+    oDcPageFormEngine.DcPageControlHolderId = 'htmlControls';
+    oDcPageFormEngine.NewDCCriteriaBarFrameHolderId = 'NewDcCriteriaBar';
+    if (DcFormViewDiaplayMetaDataConfig != null)
+        oDcPageFormEngine.CreateNewDcConfigBar(DcFormViewDiaplayMetaDataConfig.NewDCPageMetaDataConfig);
+}
+
+function LoadDcPage() {
+    var myInstance = this;
+    this.execute = function () {
+        try {
+            SetDcPageLoadParamByNewDCPageCriteria(DcFormViewDiaplayMetaDataConfig.NewDCPageMetaDataConfig);
+
+            var oAppendOrSetHtml = new AppendOrSetHtml();
+            oAppendOrSetHtml.ControlId = 'ContentFrame';
+            oAppendOrSetHtml.Html = '';
+            oAppendOrSetHtml.SetHtml();
+
+            var RequestParam = {
+                "DcPlaceId": DcPlaceId,
+                "DcPlaceName": DcPlaceName,
+                "DcPlaceType": DcPlaceType,
+                "DcPlaceDimension": 16,
+                "TemplateNodeId": DcTemplateId,
+                "DcProfileId": DcProfileId,
+                /* 1 -> New Mode, 2 -> Edit Mode */
+                "DcViewContext": DcViewContext,
+                /* DcId required when ever DcViewContext is 2 */
+                "DcId": DcId,
+            };
+            oOneViewGlobalDataCaptureComponent.Init(RequestParam);
+            if (OneViewDcGlobalVariableInfo.OneViewDataCaptureModelInfo != null && OneViewDcGlobalVariableInfo.OneViewDataCaptureModelInfo != undefined) {
+                var TemplateName = '';
+                if (OneViewDcGlobalVariableInfo.OneViewDataCaptureModelInfo["TemplateConfigMetaData"] != null)
+                    TemplateName = OneViewDcGlobalVariableInfo.OneViewDataCaptureModelInfo["TemplateConfigMetaData"].TemplateName;
+                $("#PageTitle").html(TemplateName);
+            }
+
+            var oDcPageFormEngine = new DcPageFormEngine();
+            oDcPageFormEngine.DcFormViewDiaplayMetaDataConfig = DcFormViewDiaplayMetaDataConfig;
+            oDcPageFormEngine.TemplateNodeId = RequestParam.TemplateNodeId;
+            oDcPageFormEngine.DcPlaceId = RequestParam.DcPlaceId;
+            oDcPageFormEngine.DcPageControlHolderId = 'htmlControls';
+            oDcPageFormEngine.DcPageFrameHolderId = 'ContentFrame';
+            oDcPageFormEngine.PageContext = 1; // Datacapture
+            oDcPageFormEngine.LoadForm();
+        }
+        catch (ex) {
+            console.log(ex);
+            var Message = "";
+            if (_GetGlobalization != undefined && _GetGlobalization != null)
+                Message = _GetGlobalization.GetGlobalizationValue("Server Error, Please Contact Administrator!");
+            new OneViewMessageBox().ShowNotification(Message, 4);
+        }
+    }
+}
+
+function SetDcPageLoadParamByNewDCPageCriteria(NewDCPageMetaDataConfig) {
+    if (NewDCPageMetaDataConfig != null && NewDCPageMetaDataConfig != undefined) {
+        var oFactory = new Factory();
+        var oNewDCCriteriaBarEngine = oFactory.GetNewDCCriteriaEngineObject(NewDCPageMetaDataConfig.Type);
+        if (oNewDCCriteriaBarEngine != null) {
+            oNewDCCriteriaBarEngine.NewDCCriteriaBarConfig = NewDCPageMetaDataConfig;
+            oNewDCCriteriaBarEngine.SetDcPageLoadParam();
+        }
+    }
+}
+
+function DcPageFormEngine() {
+    var myInstance = this;
+    this.TemplateNodeId = 0;
+    this.DcPlaceId = 0;
+    this.DcFormViewDiaplayMetaDataConfig = null;
+    this.DcPageFrameHolderId = '';
+    this.DcPageControlHolderId = '';
+    this.UrlToGetDcFormViewDiaplayMetaDataConfig = '';
+    this.NewDCCriteriaBarFrameHolderId = '';
+
+    this.PageContext = null;
+
+    this.LoadForm = function () {
+        if (myInstance.DcFormViewDiaplayMetaDataConfig != undefined && myInstance.DcFormViewDiaplayMetaDataConfig != null) {
+            try {
+                /* Create button Bar based on config */
+                myInstance.CreatebuttonBar(myInstance.DcFormViewDiaplayMetaDataConfig.ButtonBarConfig);
+                /* Create Bread Crumb based on config */
+                myInstance.CreateBreadCrumb(myInstance.DcFormViewDiaplayMetaDataConfig.BreadCrumbConfig);
+                /* Create Summary Bar based on config */
+                myInstance.CreateSummaryBar(myInstance.DcFormViewDiaplayMetaDataConfig.SummaryConfig);
+                /* Create NewDc Config Bar based on config */
+                //myInstance.CreateNewDcConfigBar(myInstance.DcFormViewDiaplayMetaDataConfig.NewDCPageMetaDataConfig);
+                /* Create DcPage based on Tempalte and Place. */
+                myInstance.CreateDcPage(myInstance.DcFormViewDiaplayMetaDataConfig.DcPageConfigLst);
+            }
+            catch (ex) {
+                console.log(ex);
+                ErrorMessage();
+            }
+        }
+        else {
+            ErrorMessage();
+        }
+    }
+
+    this.CreatebuttonBar = function (ButtonBarConfig) {
+
+    }
+
+    this.CreateBreadCrumb = function (BreadCrumbConfig) {
+
+    }
+
+    this.CreateSummaryBar = function (SummaryConfig) {
+
+    }
+
+    this.CreateNewDcConfigBar = function (NewDCMetaDataConfig) {
+        if (NewDCMetaDataConfig != null && NewDCMetaDataConfig != undefined) {
+            var oFactory = new Factory();
+            var oNewDCCriteriaBarEngine = oFactory.GetNewDCCriteriaEngineObject(NewDCMetaDataConfig.Type);
+            if (oNewDCCriteriaBarEngine != null) {
+                oNewDCCriteriaBarEngine.NewDCCriteriaBarConfig = NewDCMetaDataConfig;
+                oNewDCCriteriaBarEngine.BarFrameHolderId = myInstance.NewDCCriteriaBarFrameHolderId;
+                oNewDCCriteriaBarEngine.PageControlHolderId = myInstance.DcPageControlHolderId;
+                oNewDCCriteriaBarEngine.Load();
+            }
+            $("#" + myInstance.NewDCCriteriaBarFrameHolderId).addClass('white margin-bottom-5');
+        }
+        else
+            $("#" + myInstance.NewDCCriteriaBarFrameHolderId).addClass('hide');
+    }
+
+    this.CreateDcPage = function (DcPageConfigLst) {
+        if (DcPageConfigLst != undefined && DcPageConfigLst != null) {
+            var DcPageConfig = DcPageConfigLst.filter(OneViewArrayFilter("TemplateNodeId", myInstance.TemplateNodeId));
+            if (DcPageConfig != null && DcPageConfig != undefined && DcPageConfig.length > 0) {
+                DcPageConfig = DcPageConfig[0];
+                var oFactory = new Factory();
+                var oLoadDCPage = oFactory.GetDCPageConfigObject(DcPageConfig.Type);
+                oLoadDCPage.PageConfig = DcPageConfig;
+                oLoadDCPage.PageFrameHolderId = myInstance.DcPageFrameHolderId;
+                oLoadDCPage.PageControlHolderId = myInstance.DcPageControlHolderId;
+                oLoadDCPage.PageContext = myInstance.PageContext;
+                oLoadDCPage.Load();
+            }
+        }
+    }
+
+    var ErrorMessage = function () {
+        var Message = "";
+        if (_GetGlobalization != undefined && _GetGlobalization != null)
+            Message = _GetGlobalization.GetGlobalizationValue("Server Error, Please Contact Administrator!");
+        new OneViewMessageBox().ShowNotification(Message, 4);
+    }
+
+    this.GetDcFormViewDiaplayMetaDataConfig = function () {
+        var result = null;
+        var _OneViewAjax = new WiNAiMAjax();
+        _OneViewAjax.url = myInstance.UrlToGetDcFormViewDiaplayMetaDataConfig;
+        _OneViewAjax.webMethod = "post";
+        _OneViewAjax.async = false;
+        _OneViewAjax.contentType = 'application/json; charset=utf-8';
+        _OneViewAjax.dataType = 'json';
+        _OneViewAjax.parameter = JSON.stringify({ request: { TemplateNodeId: myInstance.TemplateNodeId, DcPlaceId: myInstance.DcPlaceId } });
+        result = _OneViewAjax.execute();
+        if (result != undefined && result != null && result != '') {
+            try {
+                result = result;
+                if (typeof (result) == 'object')
+                    return result;
+                else
+                    return null;
+            }
+            catch (ex) {
+                return null;
+            }
+        }
+        else {
+            return null;
+        }
+    }
+}
+
+function DefaultNewDCCriteriaBarView() {
+    this.NewDCCriteriaBarConfig = null;
+    this.BarFrameHolderId = '';
+    this.PageControlHolderId = '';
+    var myInstance = this;
+
+    this.Load = function () {
+        var FormattedNewDcBarConfig = GetFormattedBarConfig();
+        FormNewDCCriteriaBar(FormattedNewDcBarConfig);
+    }
+
+    this.SetDcPageLoadParam = function () {
+        var HtmlPageConfig = GetFormattedBarConfig();
+        var DCPlaceTypeControlConfig = myInstance.NewDCCriteriaBarConfig.DCPlaceType;
+        var oDynamicPage = new DynamicPage(HtmlPageConfig);
+        if (DCPlaceTypeControlConfig != undefined && DCPlaceTypeControlConfig != null) {
+            DcPlaceType = oDynamicPage.getControlValue(DCPlaceTypeControlConfig);
+            DcPlaceType = DcPlaceType != null && DcPlaceType != '' ? parseInt(DcPlaceType) : DcPlaceType;
+        }
+        
+        var DCPlaceControlConfig = myInstance.NewDCCriteriaBarConfig.DCPlace;
+        if (DCPlaceControlConfig != undefined && DCPlaceControlConfig != null) {
+            DcPlaceId = oDynamicPage.getControlValue(DCPlaceControlConfig);
+            DcPlaceId = DcPlaceId != null && DcPlaceId != '' ? parseInt(DcPlaceId) : DcPlaceId;
+        }
+        
+        var DCTemplateControlConfig = myInstance.NewDCCriteriaBarConfig.DCTemplate;
+        if (DCTemplateControlConfig != undefined && DCTemplateControlConfig != null) {
+            DcTemplateId = oDynamicPage.getControlValue(DCTemplateControlConfig);
+            DcTemplateId = DcTemplateId != null && DcTemplateId != '' ? parseInt(DcTemplateId) : DcTemplateId;
+
+            if (DCTemplateControlConfig.DataLst != null && DCTemplateControlConfig.DataLst.length > 0)
+            {
+                var filteredData = DCTemplateControlConfig.DataLst.filter(OneViewArrayFilter("Id", DcTemplateId));
+                if (filteredData != null && filteredData.length > 0 && filteredData[0].ProfileId != null && filteredData[0].ProfileId.length > 0)
+                    DcProfileId = filteredData[0].ProfileId[0];
+            }
+        }
+    }
+
+    var GetFormattedBarConfig = function () {
+        var HtmlPageConfig = {
+            "totalRows": 1, "ControlGroupConfigLst": [{
+                "Type": "DefaultHTMLPageControlGroupConfig", "RowIndex": 1, "ColIndex": 1,
+                "totalRows": 1, ControlConfigDict: {}
+            }], "RenderOrder": {}
+        };
+        var oAppendOrSetHtml = new AppendOrSetHtml();
+        var DCPlaceTypeControlConfig = myInstance.NewDCCriteriaBarConfig.DCPlaceType;
+        if (DCPlaceTypeControlConfig != undefined && DCPlaceTypeControlConfig != null) {
+            HtmlPageConfig["ControlGroupConfigLst"][0]["ControlConfigDict"][DCPlaceTypeControlConfig.ClientID] = DCPlaceTypeControlConfig;
+            HtmlPageConfig["RenderOrder"][DCPlaceTypeControlConfig.ClientID] = DCPlaceTypeControlConfig.ClientID;
+        }
+        var DCPlaceControlConfig = myInstance.NewDCCriteriaBarConfig.DCPlace;
+        if (DCPlaceControlConfig != undefined && DCPlaceControlConfig != null) {
+            HtmlPageConfig["ControlGroupConfigLst"][0]["ControlConfigDict"][DCPlaceControlConfig.ClientID] = DCPlaceControlConfig;
+            HtmlPageConfig["RenderOrder"][DCPlaceControlConfig.ClientID] = DCPlaceControlConfig.ClientID;
+        }
+        var DCTemplateControlConfig = myInstance.NewDCCriteriaBarConfig.DCTemplate;
+        if (DCTemplateControlConfig != undefined && DCTemplateControlConfig != null) {
+            HtmlPageConfig["ControlGroupConfigLst"][0]["ControlConfigDict"][DCTemplateControlConfig.ClientID] = DCTemplateControlConfig;
+            HtmlPageConfig["RenderOrder"][DCTemplateControlConfig.ClientID] = DCTemplateControlConfig.ClientID;
+        }
+        return HtmlPageConfig;
+    }
+
+    var FormNewDCCriteriaBar = function (HtmlPageConfig) {
+        var _CreateHTMLPageHTML = new CreateHTMLPageHTML();
+        _CreateHTMLPageHTML.HTMLPageConfig = HtmlPageConfig;
+
+        /* Create Frame HTML based on the Page Config Meta Data. */
+        var FilterParamHtml = _CreateHTMLPageHTML.CreateFramePartial();
+        var oAppendOrSetHtml = new AppendOrSetHtml();
+        oAppendOrSetHtml.ControlId = myInstance.BarFrameHolderId;
+        oAppendOrSetHtml.Html = FilterParamHtml;
+        oAppendOrSetHtml.SetHtml();
+
+        /* Create Controls HTML based on the Page Config Meta Data. */
+        var ControlsHtml = _CreateHTMLPageHTML.CreateControls(HtmlPageConfig.ControlGroupConfigLst);
+        oAppendOrSetHtml.ControlId = myInstance.PageControlHolderId;
+        oAppendOrSetHtml.Html = ControlsHtml;
+        oAppendOrSetHtml.SetHtml();
+
+        /* Set Controls into Frame based on the Page Config Meta Data. */
+        _CreateHTMLPageHTML.SetControls(HtmlPageConfig.ControlGroupConfigLst);
+
+        var oLoadControlData = new LoadControlData(HtmlPageConfig);
+        oLoadControlData.Load();
+    }
+}
+
+/* View engine's ------------------------------------------- Start ------------------------------------------- */
+
+function DefaultDCPageViewEngine() {
+    var myInstance = this;
+    this.PageConfig = null;
+    this.PageFrameHolderId = '';
+    this.PageControlHolderId = '';
+    this.PageContext = null;
+
+    this.Load = function () {
+        throw "Not Implemented";
+    }
+}
+
+function CustomDcPageViewEngine() {
+    var myInstance = this;
+    this.PageConfig = null;
+    this.PageFrameHolderId = '';
+    this.PageControlHolderId = '';
+    this.PageContext = null;
+
+    this.Load = function () {
+
+        if (myInstance.PageConfig.CodeUrl != null && myInstance.PageConfig.CodeUrl != "") {
+
+            var _oWiNAiMAjax = new WiNAiMAjax();
+            _oWiNAiMAjax.url = GetRelativeUrl(myInstance.PageConfig.CodeUrl + "?" + new Date().toString());
+            _oWiNAiMAjax.webMethod = "GET";
+
+            var callBackparm = {
+                success: function (response, message) {
+                    if (message != "") {
+                        var oScript = document.createElement("script");
+                        var oScriptText = document.createTextNode(message);
+                        oScript.appendChild(oScriptText);
+                        document.body.appendChild(oScript);
+                    }
+                },
+                error: function (sender, Request, textStatus, errorThrown) {
+                },
+                sender: this
+            }
+
+            _oWiNAiMAjax.execute(callBackparm);
+        }
+        
+        if (myInstance.PageConfig.HtmlUrl != null && myInstance.PageConfig.HtmlUrl != "") {
+
+            var _oWiNAiMAjax = new WiNAiMAjax();
+            _oWiNAiMAjax.url = GetRelativeUrl(myInstance.PageConfig.HtmlUrl + "?" + new Date().toString());
+            _oWiNAiMAjax.webMethod = "GET";
+
+            var callBackparm = {
+                success: function (response, message) {
+                    if (message != "") {
+
+                        oOneViewGlobalDataCaptureComponent.PreRender();
+
+                        $("#ContentFrame").append(message);
+
+                        oOneViewGlobalDataCaptureComponent.PostRender();
+                    }
+                },
+                error: function (sender, Request, textStatus, errorThrown) {
+                },
+                sender: this
+            }
+
+            _oWiNAiMAjax.execute(callBackparm);           
+        }
+    }
+}
+
+function FormViewEngine() {
+    var myInstance = this;
+    this.PageConfig = null;
+    this.PageFrameHolderId = '';
+    this.PageControlHolderId = '';
+    this.UrlGetFormViewMetaDataConfig = GetRelativeUrl('/DataCapture/DcPageFormViewConfigMetaData');
+    var DcPageFormViewConfig = null;
+    var ControlLst = [];
+    this.PageContext = null;
+
+    this.Load = function () {
+        DcPageFormViewConfig = myInstance.GetFormViewMetaDataConfig();
+
+        var _CreateHTMLPageHTML = new CreateHTMLPageHTML();
+        _CreateHTMLPageHTML.HTMLPageConfig = DcPageFormViewConfig;
+        _CreateHTMLPageHTML.PageContext = myInstance.PageContext;
+
+        /* Create Frame HTML based on the Page Config Meta Data. */
+        var FilterParamHtml = _CreateHTMLPageHTML.CreateFramePartial();
+        var oAppendOrSetHtml = new AppendOrSetHtml();
+        oAppendOrSetHtml.ControlId = myInstance.PageFrameHolderId;
+        oAppendOrSetHtml.Html = FilterParamHtml;
+        oAppendOrSetHtml.AppendToHtml();
+
+        /* Create Controls HTML based on the Page Config Meta Data. */
+        var ControlsHtml = _CreateHTMLPageHTML.CreateControls(DcPageFormViewConfig.ControlGroupConfigLst);
+        oAppendOrSetHtml.ControlId = myInstance.PageControlHolderId;
+        oAppendOrSetHtml.Html = ControlsHtml;
+        oAppendOrSetHtml.SetHtml();
+
+        /* Set Controls into Frame based on the Page Config Meta Data. */
+        _CreateHTMLPageHTML.SetControls(DcPageFormViewConfig.ControlGroupConfigLst);
+    }
+
+    this.GetFormViewMetaDataConfig = function () {
+        var result = null;
+        var _OneViewAjax = new WiNAiMAjax();
+        _OneViewAjax.url = myInstance.UrlGetFormViewMetaDataConfig;
+        _OneViewAjax.webMethod = "post";
+        _OneViewAjax.async = false;
+        _OneViewAjax.contentType = 'application/json; charset=utf-8';
+        _OneViewAjax.dataType = 'json';
+        _OneViewAjax.parameter = JSON.stringify({ PageId: myInstance.PageConfig.FormViewDcPageConfigMetaDataRef });
+        result = _OneViewAjax.execute();
+        if (result != undefined && result != null && result != '') {
+            try {
+                result = result;
+                if (typeof (result) == 'object')
+                    return result;
+                else
+                    return null;
+            }
+            catch (ex) {
+                return null;
+            }
+        }
+        else {
+            return null;
+        }
+    }
+}
+
+/* View engine's ------------------------------------------- End ------------------------------------------- */
+
+function ImageControl() {
+    var myInstance = this;
+
+    this.ImageSelectClickEvent = function (input) {
+        input.value = null;
+        $(input).replaceWith($(input).val('').clone(true));
+    }
+
+    this.ImageSave = function (input) {
+        var response = null;
+        if (input.files.length > 0) {
+            var file = input.files[0];
+            var extension = file.name.substring(file.name.lastIndexOf('.'));
+            if (extension == '.png' || extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".tiff" || extension == ".JPG" || extension == ".JPEG") {
+                var formdata = new FormData();
+                formdata.append('uplUpload', file);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', GetRelativeUrl("/DataCapture/UploadMultimedia"), false);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == "200") {
+                        if (JSON.parse(xhr.responseText) == 'Session Failure') {
+                            window.location.href = GetParentFolderOfApplication() + "/Login/LoginIndex";
+                            response = null;
+                        }
+                        else
+                            response = JSON.parse(xhr.responseText);
+                    }
+                }
+                xhr.send(formdata);
+                return response;
+            }
+            else
+                new OneViewMessageBox().ShowNotification(("IN-ER-AHI-001 :: " + extension + " , File format not supported."), 4);
+        }
+        else
+            new OneViewMessageBox().ShowNotification("IN-IN-AHI-001 :: Please Select the file to upload.", 3);
+        return response;
+    }
+
+    this.ShowImage = function (response, FrameId) {
+        if (response != null && response != undefined && response.length > 0) {
+            for (var itr = 0; itr < response.length; itr++) {
+                var divelement = document.createElement('div');
+                divelement.classList.add('superbox-list');
+                var aelement = document.createElement('a');
+                aelement.href = response[itr].FullPath;
+                aelement.setAttribute("data-lightbox", "roadtrip");
+                aelement.setAttribute("uniqueRef", response[itr].FolderPath);
+                var imgelement = document.createElement('img');
+                imgelement.src = response[itr].FullPath;
+                imgelement.setAttribute("uniqueRef", response[itr].FolderPath);
+                imgelement.classList.add("superbox-img");
+                aelement.appendChild(imgelement);
+                divelement.appendChild(aelement);
+                $("#" + FrameId).append(divelement);
+            }
+        }
+    }
+}

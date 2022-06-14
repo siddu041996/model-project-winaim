@@ -1,0 +1,985 @@
+﻿/* TODO : Due to avoid making different Page frame meta data, what ever style we made as separately based on page wise. */
+
+.con-left-cont .template .col {
+    background-color: transparent;
+}
+.con-left-cont .template .ans-mode {
+    border-bottom: 1px #b0bec5 solid;
+}
+.con-left-cont .template .ans-mode .col {
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+.con-left-cont .template .col.question-wrapper .question{
+    padding: 0px 10px 0px 10px;
+    font-size : 14px;
+}
+.con-left-cont .template .flatpickr input {
+    margin-bottom: 0px;
+}
+
+table tbody tr.row-selected {
+    background-color: #d7deec !important;
+}
+
+.text-align-center,
+.text-center {
+  text-align: center !important;
+}
+
+.con-left-cont .template .ans-mode .input-group
+{
+    /*display:flexbox;
+    display:-ms-flexbox;
+    display: -webkit-box;*/
+    width: 100% !important;
+}
+
+.con-left-cont .template .ans-mode .input-group label
+{
+    padding-left:30px !important;
+}
+
+.con-left-cont .template .ans-mode .input-group p
+{
+    display: inline-block;
+    vertical-align: top;
+    margin-left:20px;
+}
+
+.con-left-cont .template .ans-mode .input-group :first-child
+{
+    margin-left:0px;
+}
+
+/* TODO (Devaraj S on 14-09-2017 1729) : Need to check with pallav and need to change with respect. */
+
+.section-result {
+    cursor: pointer;
+    box-sizing: border-box;
+    min-height: 112px;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding-top: 10px;
+    border-bottom: 1px #b0bec5 solid;
+}
+    
+.section-result-text-content {
+    color: #8c8c8c;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 16px;
+    min-width: 1px;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.section-result-title-container {
+    display: table-cell;
+    width: 100%;
+    white-space: normal;
+}
+
+.section-result-title {
+    color: #000;
+    font-size: 15px;
+    line-height: 16px;
+    padding-bottom: 2px;
+    white-space: normal;
+}
+
+.section-image-container {
+    display: inline-block;
+    height: 92px;
+    width: 80px;
+    margin-left: 10px;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.section-result-image {
+    background-size: 80px 92px;
+    height: 92px;
+    width: 80px;
+    vertical-align: top;
+    -webkit-flex: 0 0 80px;
+    -ms-flex: 0 0 80px;
+    flex: 0 0 80px;
+}
+
+.section-result-details-container {
+    padding-top: 2px;
+}
+
+.section-result-details-container-item {
+    display: table-row;
+}
+
+.section-back-to-list-button {
+    background-color: #fff;
+    border-radius: 0 0 2px 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    font-size: 13px;
+    left: 8px;
+    padding: 8px 20px;
+    position: fixed;
+    right: 8px;
+    text-align: left;
+    top: 56px;
+    width: 392px;
+    z-index: 5;
+}
+
+.section-hero-header {
+    color: #fff;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    font-size: 13px;
+}
+
+.section-info {
+    font-size: 13px;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    position: relative;
+}
+
+.section-hero-header-title {
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color:black;
+}
+
+.breakContentStyle {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:10px;
+}
+
+/* Registration Form Styles */
+
+.Registration-panel {
+    width: 100%;
+    height: auto !important;
+    position: absolute;
+}
+
+@media only screen and (min-width: 601px) {
+    .Registration-panel {
+        width: 65%;
+        height: 85%;
+        border-radius: 10px;
+        position: absolute;
+        right: 17%;
+        top: 9.43%;
+    }
+}
+
+.template .flatpickr input {
+    margin-bottom: 0px;
+}
+
+/* Added By Devaraj S on 07-11-2017 -- For flot Chart Loading this CSS Must */
+
+#flotTip {
+  padding: 3px 5px;
+  background-color: #ffffff;
+  z-index: 999999;
+  color: #333333;
+  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  border: 1px solid #C1C1C1;
+  -moz-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+#flotTip span {
+  color: #38812D;
+  font-weight: bold;
+}
+.legendLabel span {
+  display: block;
+  margin: 0 5px;
+}
+.legendColorBox {
+  padding-left: 10px;
+  vertical-align: top;
+  /*padding-top: 5px;*/
+  width:1%;
+}
+
+.legendColorBox div > div {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}
+
+.legendLabel
+{
+    padding:0px;
+}
+
+.chartclass .button {
+    position: absolute;
+    cursor: pointer;
+}
+
+.chartclass div.button {
+    font-size: smaller;
+    color: #999;
+    background-color: #eee;
+    padding: 2px;
+}
+.chartclass
+{ 
+    width: 100%; height: 206px;
+    padding: 0px;
+    position: relative;
+    margin-bottom:15px;
+    margin-left:5px;
+    margin-right:5px;
+    margin-top:5px;
+}
+.pieChartclass
+{ 
+    width: 100%; height: 206px;
+    padding: 0px;
+    position: relative;
+    margin-bottom:15px;
+}
+.listViewChartclass
+{ 
+    width: 100%; height: 200px;
+    padding: 0px;
+    position: relative;
+    margin-bottom:15px;
+}
+
+.easy-pie-chart {
+    font-size: 22px;
+    font-weight: bold;
+}
+/*
+ * Flot Chart 
+ */
+.chart {
+  height: 220px;
+  /*margin: 20px 5px 10px 10px; */
+}
+.has-legend {
+  margin-top: 30px !important;
+}
+.has-legend-unique {
+  margin-top: 19px !important;
+}
+
+
+/*
+ * EASY PIE CHART
+ */
+.easyPieChart {
+  position: relative;
+  text-align: center;
+}
+.easyPieChart canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.easy-pie-chart {
+  display: inline-block;
+}
+.easy-pie-chart .percent {
+  color: #444;
+  font-size: 12px;
+  font-weight: bold;
+}
+.easy-pie-title {
+  display: inline-block;
+  margin: 10px 6px 0;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  width: 100px;
+  height: 19px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.easy-pie-title .icon-color-good,
+.easy-pie-title .icon-color-bad {
+  font-size: 18px;
+}
+
+/* Horizontal Slider */
+
+.horizon-swiper,
+.horizon-swiper *,
+.horizon-swiper:after,
+.horizon-swiper:before {
+    box-sizing: border-box;
+}
+
+.horizon-swiper {
+    position: relative;
+    background: #fff;
+}
+
+.horizon-swiper a:focus,
+.horizon-swiper button:focus {
+    outline: 0;
+}
+
+.horizon-swiper.mouse-drag,
+.horizon-swiper.mouse-drag * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.horizon-swiper .horizon-outer {
+    overflow: hidden;
+}
+
+.horizon-swiper .horizon-inner {
+    padding: 0px;
+    text-align: center;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.horizon-swiper .horizon-item {
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    padding: 20px;
+}
+
+.horizon-swiper .horizon-dots {
+    display: none;
+    text-align: center;
+}
+
+.horizon-swiper .horizon-dots .horizon-dot {
+    display: inline-block;
+    margin: 0 3px;
+}
+
+.horizon-swiper.initialized .horizon-dots {
+    display: block;
+}
+
+.horizon-swiper .horizon-next,
+.horizon-swiper .horizon-prev {
+    display: none;
+}
+
+.horizon-swiper.initialized .horizon-next,
+.horizon-swiper.initialized .horizon-prev {
+    display: block;
+}
+
+.horizon-swiper.first-item .horizon-prev,
+.horizon-swiper.last-item .horizon-next {
+    opacity: .2;
+}
+
+.horizon-swiper {
+    
+}
+
+.horizon-swiper.arrows {
+    padding: 0px;
+}
+
+.horizon-swiper .horizon-dots {
+    padding: 0 0 6px;
+}
+
+.horizon-swiper .horizon-dots .horizon-dot {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    font-size: 0;
+    line-height: 1;
+    background: 0 0;
+    border: 1px solid #2c3e50;
+    border-radius: 50%;
+    -webkit-transition: background .3s;
+    transition: background .3s;
+}
+
+.horizon-swiper .horizon-dots .horizon-dot.active {
+    background: #2c3e50;
+}
+
+.horizon-swiper .horizon-next,
+.horizon-swiper .horizon-prev {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 40px;
+    border: none;
+    outline: 0;
+    background: center no-repeat
+}
+
+.horizon-swiper .horizon-next:before,
+.horizon-swiper .horizon-prev:before {
+    position: absolute;
+    top:0;
+    right:0;
+    left: 0;
+    bottom:0;
+    content: " ";
+}
+
+.horizon-swiper .horizon-next:before{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.21+100 */
+background: -moz-linear-gradient(left,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.21) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.21) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.21) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#36000000',GradientType=1 ); /* IE6-9 */
+
+}
+
+.horizon-swiper .horizon-prev:before{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.21+0,0+100 */
+background: -moz-linear-gradient(left,  rgba(0,0,0,0.21) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(0,0,0,0.21) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(0,0,0,0.21) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#36000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+}
+
+.horizon-swiper .horizon-next:active,
+.horizon-swiper .horizon-next:focus,
+.horizon-swiper .horizon-next:hover,
+.horizon-swiper .horizon-prev:active,
+.horizon-swiper .horizon-prev:focus,
+.horizon-swiper .horizon-prev:hover {
+    outline: 0;
+}
+
+.horizon-swiper .horizon-prev {
+    left: 0px;
+    background-image: url(../img/arrow-left.svg);
+}
+
+.horizon-swiper .horizon-next {
+    right: 0px;
+    background-image: url(../img/arrow-right.svg);
+}
+
+.gauge {
+  width: 100%;
+  margin-top: -8px;
+}
+  
+.gauge-txt{
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.col-xs-1,.col-sm-1,.col-md-1,.col-lg-1,.col-xs-2,.col-sm-2,.col-md-2,.col-lg-2,.col-xs-3,.col-sm-3,.col-md-3,.col-lg-3,.col-xs-4,.col-sm-4,.col-md-4,.col-lg-4,.col-xs-5,.col-sm-5,
+.col-md-5,.col-lg-5,.col-xs-6,.col-sm-6,.col-md-6,.col-lg-6,.col-xs-7,.col-sm-7,.col-md-7,.col-lg-7,.col-xs-8,.col-sm-8,.col-md-8,.col-lg-8,.col-xs-9,.col-sm-9,.col-md-9,.col-lg-9,
+.col-xs-10,.col-sm-10,.col-md-10,.col-lg-10,.col-xs-11,.col-sm-11,.col-md-11,.col-lg-11,.col-xs-12,.col-sm-12,.col-md-12,.col-lg-12
+{position:relative;min-height:1px;padding-left:13px;padding-right:13px}
+
+@media(min-width:760px) {
+    .col-sm-1,
+    .col-sm-2,
+    .col-sm-3,
+    .col-sm-4,
+    .col-sm-5,
+    .col-sm-6,
+    .col-sm-7,
+    .col-sm-8,
+    .col-sm-9,
+    .col-sm-10,
+    .col-sm-11,
+    .col-sm-12 {
+        float: left
+    }
+    .col-sm-12 {
+        width: 100%
+    }
+    .col-sm-11 {
+        width: 91.66666666666666%
+    }
+    .col-sm-10 {
+        width: 83.33333333333334%
+    }
+    .col-sm-9 {
+        width: 75%
+    }
+    .col-sm-8 {
+        width: 66.66666666666666%
+    }
+    .col-sm-7 {
+        width: 58.333333333333336%
+    }
+    .col-sm-6 {
+        width: 50%
+    }
+    .col-sm-5 {
+        width: 41.66666666666667%
+    }
+    .col-sm-4 {
+        width: 33.33333333333333%
+    }
+    .col-sm-3 {
+        width: 25%
+    }
+    .col-sm-2 {
+        width: 16.666666666666664%
+    }
+    .col-sm-1 {
+        width: 8.333333333333332%
+    }
+    .col-sm-pull-12 {
+        right: 100%
+    }
+    .col-sm-pull-11 {
+        right: 91.66666666666666%
+    }
+    .col-sm-pull-10 {
+        right: 83.33333333333334%
+    }
+    .col-sm-pull-9 {
+        right: 75%
+    }
+    .col-sm-pull-8 {
+        right: 66.66666666666666%
+    }
+    .col-sm-pull-7 {
+        right: 58.333333333333336%
+    }
+    .col-sm-pull-6 {
+        right: 50%
+    }
+    .col-sm-pull-5 {
+        right: 41.66666666666667%
+    }
+    .col-sm-pull-4 {
+        right: 33.33333333333333%
+    }
+    .col-sm-pull-3 {
+        right: 25%
+    }
+    .col-sm-pull-2 {
+        right: 16.666666666666664%
+    }
+    .col-sm-pull-1 {
+        right: 8.333333333333332%
+    }
+    .col-sm-pull-0 {
+        right: 0
+    }
+    .col-sm-push-12 {
+        left: 100%
+    }
+    .col-sm-push-11 {
+        left: 91.66666666666666%
+    }
+    .col-sm-push-10 {
+        left: 83.33333333333334%
+    }
+    .col-sm-push-9 {
+        left: 75%
+    }
+    .col-sm-push-8 {
+        left: 66.66666666666666%
+    }
+    .col-sm-push-7 {
+        left: 58.333333333333336%
+    }
+    .col-sm-push-6 {
+        left: 50%
+    }
+    .col-sm-push-5 {
+        left: 41.66666666666667%
+    }
+    .col-sm-push-4 {
+        left: 33.33333333333333%
+    }
+    .col-sm-push-3 {
+        left: 25%
+    }
+    .col-sm-push-2 {
+        left: 16.666666666666664%
+    }
+    .col-sm-push-1 {
+        left: 8.333333333333332%
+    }
+    .col-sm-push-0 {
+        left: 0
+    }
+    .col-sm-offset-12 {
+        margin-left: 100%
+    }
+    .col-sm-offset-11 {
+        margin-left: 91.66666666666666%
+    }
+    .col-sm-offset-10 {
+        margin-left: 83.33333333333334%
+    }
+    .col-sm-offset-9 {
+        margin-left: 75%
+    }
+    .col-sm-offset-8 {
+        margin-left: 66.66666666666666%
+    }
+    .col-sm-offset-7 {
+        margin-left: 58.333333333333336%
+    }
+    .col-sm-offset-6 {
+        margin-left: 50%
+    }
+    .col-sm-offset-5 {
+        margin-left: 41.66666666666667%
+    }
+    .col-sm-offset-4 {
+        margin-left: 33.33333333333333%
+    }
+    .col-sm-offset-3 {
+        margin-left: 25%
+    }
+    .col-sm-offset-2 {
+        margin-left: 16.666666666666664%
+    }
+    .col-sm-offset-1 {
+        margin-left: 8.333333333333332%
+    }
+    .col-sm-offset-0 {
+        margin-left: 0
+    }
+}
+
+.norecordsfound
+{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-left: -70px;
+    margin-top: -25px;
+    text-transform: uppercase;
+}
+
+/*--------------------------------------------flot Chart Loading CSS END----------------------------------*/
+
+
+
+
+/* --------------------------------------additional added script for widget 3 Start-----------------------------*/
+.desktopview {
+    display: grid;
+    /*grid-template-columns: 80px 40px 200px 120px 120px 120px 120px;  15% 37% 1% 1% 12% 12% 12% 12%*/
+    grid-template-columns: 25% 40% 50% 20%;
+    grid-gap: 5px;
+	
+ }
+ .mobileview{
+display:none;
+}
+  @media only screen and (max-width: 2700px){
+	.desktopview{
+		 display: grid;
+		 grid-template-columns: 20% 20% 40% 17%;
+		grid-gap: 5px;
+		 width:100%;
+	 }
+	 .mobileview{
+display:none;
+}
+}
+@media only screen and (max-width: 2200px){
+	 .desktopview {
+		 display: grid;
+		 grid-template-columns: 13% 22% 45% 17%;
+		grid-gap: 5px;
+		 width:100%;
+	 }
+	 .mobileview{
+display:none;
+}
+}
+ @media only screen and (max-width: 1920px){
+	 .desktopview{
+		 display: grid;
+		 grid-template-columns: 13% 22% 45% 17%;
+		grid-gap: 5px;
+		 width:100%;
+	 }
+	 .mobileview{
+display:none;
+}
+}
+@media only screen and (max-width: 1570px){
+	 .desktopview {
+		 display: grid;
+		 grid-template-columns: 13% 22% 45% 13%;
+		grid-gap: 5px;
+		 width:100%;
+	 }
+	 .mobileview{
+display:none;
+}
+}
+@media only screen and (max-width: 1320px){
+	.desktopview{
+		 display: grid;
+		 grid-template-columns: 57% 40%;
+		grid-gap: 5px;
+		 width:100%;
+	 }
+	 .mobileview{
+display:none;
+}
+}
+@media only screen and (max-width: 1024px){
+	 .desktopview{
+		 display: grid;
+		 grid-template-columns: 65% 30%;
+		grid-gap: 5px;
+		 width:100%;
+		  
+	 }
+	 .mobileview{
+display:none;
+}
+}
+@media only screen and (max-width: 916px){
+	 .desktopview {
+		 display: grid;
+		 grid-template-columns: 60% 35%;
+		grid-gap: 2px;
+		 width: 100%;
+		 position: relative;        
+        left: 0;
+	 }
+    .mobileview{
+display:none;
+}    
+}
+}
+@media only screen and (max-width: 770px) {
+    /* For mobile phones: */
+    .desktopview {
+        display: grid;
+        /*grid-template-columns: 80px 180px 100px; */
+        grid-template-columns: 55% 35%;
+        grid-gap: 2px;
+        width: 100%;
+        position: relative;
+        left: 0;
+    }
+	.mobileview{
+display:none;
+}
+}
+
+@media only screen and (max-width: 580px) {
+    /* For mobile phones: */
+    .desktopview{
+        display: grid;
+        /*grid-template-columns: 80px 180px 100px; */
+        grid-template-columns: 55% 40%;
+        grid-gap: 3px;
+        width: 100%;
+        position: relative;
+        left: 0;
+    }
+	.mobileview{
+display:none;
+}
+}
+@media only screen and ( max-width: 579px) {
+.desktopview{
+display:none;
+}
+.mobileview {
+    display: grid;
+    grid-template-columns: 41% 49%;
+    grid-gap: 2px;
+    width: 100%;
+    text-align: -webkit-center;
+}
+}
+
+@media only screen and ( max-width: 461px) {
+.desktopview{
+display:none;
+}
+.mobileview {
+    display: grid;
+    grid-template-columns: 30% 63%;
+    grid-gap: 2px;
+    width: 100%;
+    text-align: -webkit-center;
+}
+}
+@media only screen and ( max-width: 391px) {
+.desktopview{
+display:none;
+}
+.mobileview {
+    display: grid;
+    grid-template-columns: 30% 65%;
+    grid-gap: 2px;
+    width: 100%;
+    text-align: -webkit-center;
+}
+}
+@media only screen and ( max-width: 341px) {
+.desktopview{
+display:none;
+}
+.mobileview {
+    display: grid;
+    grid-template-columns: 28% 66%;
+    grid-gap: 2px;
+    width: 100%;
+    text-align: -webkit-center;
+}
+}
+@media only screen and ( max-width: 335px) {
+.desktopview{
+display:none;
+}
+.mobileview {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 2px;
+    width: 100%;
+     text-align: center;
+}
+}
+/* --------------------------------------additional added script for widget 3 End-----------------------------*/
+
+/* --------------------------------------additional added script for Toolbar on Top - Start-----------------------------*/
+
+.button
+{
+    display:grid;
+    grid-template-columns: 23% 25% 10% 19% 5% 16%;
+     text-align: center;
+    }
+@media only screen and ( max-width: 1740px) {
+    .button {
+        display: grid;
+        grid-template-columns:25% 25% 0% 25% 3% 20%;
+         text-align: center;
+    }
+}
+@media only screen and ( max-width: 1140px) {
+    .button {
+        display: grid;
+        grid-template-columns:20% 20% 0% 30% 0% 20%;
+         text-align: center;
+    }
+}
+@media only screen and ( max-width: 830px) {
+    .button {
+        display: grid;
+        grid-template-columns:20% 20% 0% 30% 0% 25%;
+         text-align: center;
+    }
+}
+@media only screen and ( max-width: 685px) {
+    .button {
+        display: grid;
+        grid-template-columns:15% 0% 15% 35% 0% 28%;
+         text-align: center;
+    }
+}
+@media only screen and ( max-width: 661px) {
+    .button {
+        display: grid;
+        grid-template-columns:12% 0% 12% 38% 0% 30%;
+         text-align: center;
+    }
+}
+
+@media only screen and ( max-width: 609px) {
+    .button {
+        display: grid;
+        grid-template-columns:12% 0% 12% 38% 0% 30%;
+         text-align: center;
+    }
+}
+@media only screen and ( max-width: 566px) {
+    .button {
+        display: grid;
+        grid-template-columns:0% 50% 9% 35%;
+         text-align: center;
+    }
+}
+@media only screen and ( max-width: 516px) {
+    .button {
+        display: grid;
+        grid-template-columns:0% 42% 9% 36%;
+         text-align: center;
+    }
+}
+
+
+@media only screen and ( max-width: 484px) {
+    .button {
+        display: grid;
+        grid-template-columns:0% 45% 7% 38%;
+         text-align: center;
+    }
+}
+@media only screen and ( max-width: 462px) {
+    .button {
+        display: grid;
+        grid-template-columns:100%;
+         text-align: center;
+    }
+}
+@media only screen and ( max-width: 360px) {
+    .button {
+        display: grid;
+        grid-template-columns:100%;
+         text-align: center;
+    }
+}
+
+.ans-mant {
+    border: 2px #FF0000 solid;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 0px #ccc;
+}
+
+/* --------------------------------------additional added script for Toolbar on Top - End-----------------------------*/
+
+
+@media only screen and (max-width: 601px) {
+    #PerformanceSummary {
+        height:auto !important;
+    }
+}
+.txt-color-blue {
+  color: #57889c !important;
+}
